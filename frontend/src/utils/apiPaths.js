@@ -15,4 +15,7 @@ export const API_PATHS = {
     GENERATE_QUESTIONS: `${BASE_URL}/ai/generate-questions`,
     EXPLAIN: `${BASE_URL}/ai/generate-explanation`,
   },
+  QUESTIONS: {
+    SEARCH: `${BASE_URL}/questions/search`,
+  },
 };

@@ -28,21 +28,19 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(10);   //for hash we used this bcrypt 
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
-      profileImageUrl: profileImageUrl || null,
     });
 
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      profileImageUrl: user.profileImageUrl,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -64,7 +62,6 @@ export const loginUser = async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
-        profileImageUrl: user.profileImageUrl,
         token: generateToken(user._id),
       });
     } else {
